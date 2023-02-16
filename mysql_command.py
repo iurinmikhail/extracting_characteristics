@@ -79,8 +79,8 @@ class CommandMySQL:
         """Записывает данные в столбец
         new_characteristics: характеристики для записи;
         name_column: Наименование столбца, в котором обновляем данные;
-        name_condition: Столбец условия
-        value_condition: Строка условия
+        name_condition: Столбец условия;
+        value_condition: Строка условия;
         """
 
         update_characteristics = f"""UPDATE {self.db_table} 
