@@ -1,3 +1,4 @@
+import os
 import re
 import pymorphy2
 from yargy.record import Record
@@ -10,17 +11,17 @@ import mysql_command as mysql
 morph = pymorphy2.MorphAnalyzer()
 
 
-def extract_measures_base_from_database() -> list:
-    """Формирует список (из базы данных) единиц измерения для проверки measures
-    """
-    query = f'SELECT name_measure FROM measures_base;'
-    db = mysql.CommandMySQL()
-    texts = db.execute_read_query(query)
-    measures_base = [''.join(i) for i in texts]
+def extract_measures_base_from_txt() -> list:
+    paht_measures_base = 'sources/measures_base.txt'
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    conf_path = os.path.join(dir_path, paht_measures_base)
+    with open(conf_path, "r", encoding='utf-8') as file:
+        texts = file.readlines()
+        measures_base = [i.strip() for i in texts]
     return measures_base
 
 
-measures_name = extract_measures_base_from_database()
+measures_name = extract_measures_base_from_txt()
 
 
 class Synonyms(Record):

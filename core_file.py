@@ -2,6 +2,7 @@
 """
 
 import json
+import os
 
 import pymorphy2
 from natasha import (
@@ -26,7 +27,9 @@ def extract_stop_words() -> set:
     Для исключения попадания их в core
     """
     path_stop_words = 'sources/stop_words.txt'
-    with open(path_stop_words, "r", encoding='utf-8') as file:
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    conf_path = os.path.join(dir_path, path_stop_words)
+    with open(conf_path, "r", encoding='utf-8') as file:
         texts = file.readlines()
     return set([i.strip() for i in texts])
 
@@ -54,7 +57,9 @@ def extract_core_normal() -> set:
     Для первичного извлечения core
      """
     path_core_normal = 'sources/core_norm.txt'
-    with open(path_core_normal, "r", encoding='utf-8') as file:
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    conf_path = os.path.join(dir_path, path_core_normal)
+    with open(conf_path, "r", encoding='utf-8') as file:
         texts = file.readlines()
         core_normal_set = set([i.strip() for i in texts])
     return core_normal_set
