@@ -368,20 +368,9 @@ def create_core_in_db(cur) -> list:
     result: список с характеристиками
     """
     global SET_CORE_ALL_JSON
-    description_product = cur[1]
-    characteristics = cur[2]
-    data = [f"{key} {' '.join(values)}" for key, values in eval(cur[3]).items()]
-    data = '. '.join(data)
+    title = cur[1]
     result = []
-    result_text = result_text_data(description_product)
+    result_text = result_text_data(title)
     if result_text:
         result += result_text
-    if data:
-        result_data = result_text_data(data)
-        if result_data:
-            result += result_data
-    if characteristics != 'NA' and characteristics is not None:
-        SET_CORE_ALL_JSON.append({'raw_structur': characteristics})
-        result_structural = create_cores_from_structural_data(characteristics)
-        result += result_structural
     return result

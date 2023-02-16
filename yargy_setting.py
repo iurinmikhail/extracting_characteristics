@@ -6,7 +6,7 @@ from yargy import rule, Parser, or_
 from yargy.predicates import eq, type, in_, gram
 from yargy.pipelines import morph_pipeline
 from yargy.interpretation import fact
-import mysql_command as mysql
+
 
 morph = pymorphy2.MorphAnalyzer()
 
